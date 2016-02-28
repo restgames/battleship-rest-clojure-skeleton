@@ -64,16 +64,12 @@
   :available-media-types ["application/json"]
   :allowed-methods [:post]
   :handle-created :result
-  :post! (fn [_]
-           (receive-shot id letter number)))
+  :post! (fn [_] (receive-shot id letter number)))
 
 (defresource delete-game-resource [id]
   :available-media-types ["application/json"]
   :allowed-methods [:delete]
-  :handle-deleted :result
-  :post! (fn [_]
-           (redis/finish-game! id)
-           {:result {:result "ok"}}))
+  :delete! (fn [_] (redis/finish-game! id)))
 
 (defroutes api-routes
   (ANY "/battleship/game" [] (create-game-resource))

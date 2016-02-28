@@ -13,5 +13,5 @@
   (car/wcar {} (car/get uuid)))
 
 (defn finish-game!
-  [game]
-  (car/wcar {} (car/del (:id game))))
+  [id]
+  (car/wcar {} (car/del id)))
